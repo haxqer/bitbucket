@@ -2,10 +2,11 @@
 
 [README](README.md) | [中文文档](README_zh.md)
 
-+ Latest Version: v7.21.13
++ Latest Version: v7.21.16
 
 Thanks to: [voarsh2](https://github.com/voarsh2) for [Bitbucket test data](https://github.com/haxqer/jira/issues/30) 
 
+v7.21.17+ requires an [updated agent](https://github.com/haxqer/bitbucket/issues/1)
 default port: 7990
 
 ## requirement
@@ -45,7 +46,7 @@ default port: 7990
 - start bitbucket
 
 ```
-    docker volume create bitbucket_home_data && docker network create bitbucket-network && docker run -p 7990:7990 -p 7999:7999 -v bitbucket_home_data:/var/bitbucket --network bitbucket-network --name bitbucket-srv -e TZ='Asia/Shanghai' haxqer/bitbucket:7.21.13
+    docker volume create bitbucket_home_data && docker network create bitbucket-network && docker run -p 7990:7990 -p 7999:7999 -v bitbucket_home_data:/var/bitbucket --network bitbucket-network --name bitbucket-srv -e TZ='Asia/Shanghai' haxqer/bitbucket:7.21.16
 ```
 
 - config your own db:
