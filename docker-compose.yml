@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   bitbucket:
-    image: haxqer/bitbucket:7.21.13
+    image: haxqer/bitbucket:7.21.16
     container_name: bitbucket-srv
     environment:
       - TZ=Asia/Shanghai
