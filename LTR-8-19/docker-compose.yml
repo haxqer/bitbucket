@@ -7,8 +7,12 @@ services:
     container_name: bitbucket-srv
     environment:
       - TZ=Asia/Shanghai
+      - JDBC_DRIVER=org.postgresql.Driver
+      - JDBC_URL=jdbc:postgresql://postgres:5432/bitbucket
+      - JDBC_USER=bitbucket
+      - JDBC_PASSWORD=bitbucket
     depends_on:
-      - mysql
+      - postgres
     ports:
       - "7990:7990"
       - "7999:7999"
@@ -18,20 +22,15 @@ services:
     networks:
       - network-bridge
 
-  mysql:
-    image: mysql:8
-    container_name: mysql-bitbucket
+  postgres:
+    image: postgres:13
+    container_name: postgres-bitbucket
     environment:
-      - TZ=Asia/Shanghai
-      - MYSQL_DATABASE=bitbucket
-      - MYSQL_ROOT_PASSWORD=123456
-      - MYSQL_USER=bitbucket
-      - MYSQL_PASSWORD=123123
-    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_bin']
-#    ports:
-#      - "13306:3306"
+      - POSTGRES_DB=bitbucket
+      - POSTGRES_USER=bitbucket
+      - POSTGRES_PASSWORD=bitbucket
     volumes:
-      - mysql_data:/var/lib/mysql
+      - postgres_data:/var/lib/postgresql/data
     restart: always
     networks:
       - network-bridge
@@ -43,5 +42,5 @@ networks:
 volumes:
   home_data:
     external: false
-  mysql_data:
+  postgres_data:
     external: false

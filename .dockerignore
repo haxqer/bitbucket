@@ -1,0 +1,6 @@
+**/.git
+**/.gitignore
+**/README.md
+**/docker-compose.yml
+**/LTR-8-19/**
+**/jdk/**
