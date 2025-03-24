@@ -18,11 +18,17 @@ default port: 7990
 
 ## How to run with docker-compose
 
-- start bitbucket & mysql
+- Choose between PostgreSQL or MySQL DB
+- start bitbucket:
 
 ```
     git clone https://github.com/haxqer/bitbucket.git \
         && cd bitbucket \
+```
+
+Choose with LTR/DB version you want (root version) or CD into other LTR versions with MySQL/PostgreSQL
+
+```
         && docker-compose pull \
         && docker-compose up
 ```
@@ -54,8 +60,6 @@ default port: 7990
 
 - config your own db:
 
-
-## Bitbucket 8.x does not allow new MYSQL installations. Use DB migratior to migrate to PostgreSQL
 
 
 ## How to hack bitbucket
