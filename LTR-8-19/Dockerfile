@@ -1,3 +1,6 @@
+# Builds 8.19.x with MySQL driver, Git and Git LFS
+# Modify to your liking.
+
 # syntax=docker/dockerfile:1.4
 FROM eclipse-temurin:17-jdk-jammy AS builder
 
