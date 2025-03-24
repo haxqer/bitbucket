@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1.4
-FROM eclipse-temurin:11-jdk-jammy AS builder
+FROM eclipse-temurin:17-jdk-jammy AS builder
 
-ARG BITBUCKET_VERSION=8.9.19
+ARG BITBUCKET_VERSION=8.19.9
 ARG BITBUCKET_PRODUCT=bitbucket-software
 ARG AGENT_VERSION=1.3.3
 ARG MYSQL_DRIVER_VERSION=8.0.22
@@ -31,14 +31,12 @@ RUN mkdir -p /opt/bitbucket /var/bitbucket /var/agent && \
     curl -fLo /var/agent/atlassian-agent.jar https://bamboo.hosttweb.com/artifact/AA-AA/JOB1/build-46/jar/atlassian-agent-jar-with-dependencies.jar && \
     curl -fLo /tmp/atlassian.tar.gz https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-${BITBUCKET_VERSION}.tar.gz && \
     tar xzf /tmp/atlassian.tar.gz -C /opt/bitbucket/ --strip-components 1 && \
-    rm -f /tmp/atlassian.tar.gz && \
-    mkdir -p /opt/bitbucket/app/WEB-INF/lib && \
-    curl -fLo /opt/bitbucket/app/WEB-INF/lib/mysql-connector-java-${MYSQL_DRIVER_VERSION}.jar https://repo1.maven.org/maven2/mysql/mysql-connector-java/${MYSQL_DRIVER_VERSION}/mysql-connector-java-${MYSQL_DRIVER_VERSION}.jar
+    rm -f /tmp/atlassian.tar.gz
 
 # Final stage
-FROM eclipse-temurin:11-jdk-jammy
+FROM eclipse-temurin:17-jdk-jammy
 
-LABEL maintainer="haxqer <haxqer666@gmail.com>" version="8.9.19"
+LABEL maintainer="haxqer <haxqer666@gmail.com>" version="8.19.9"
 
 ENV BITBUCKET_USER=bitbucket \
     BITBUCKET_GROUP=bitbucket \
