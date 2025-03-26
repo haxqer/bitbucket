@@ -1,10 +1,12 @@
+# Builds 8.19.x with with built-in Postgres support, and installs Git and Git LFS
+# Modify to your liking.
+
 # syntax=docker/dockerfile:1.4
-FROM eclipse-temurin:17-jdk-jammy AS builder
+FROM eclipse-temurin:11-jdk-jammy AS builder
 
 ARG BITBUCKET_VERSION=8.19.9
 ARG BITBUCKET_PRODUCT=bitbucket-software
-ARG AGENT_VERSION=1.3.3
-ARG MYSQL_DRIVER_VERSION=8.0.22
+ARG AGENT_VERSION=1.3.3.4
 ARG GIT_VERSION=2.42.0
 
 # Install build dependencies and Git
@@ -28,13 +30,13 @@ RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.d
 
 # Download and prepare Bitbucket files
 RUN mkdir -p /opt/bitbucket /var/bitbucket /var/agent && \
-    curl -fLo /var/agent/atlassian-agent.jar https://bamboo.hosttweb.com/artifact/AA-AA/JOB1/build-46/jar/atlassian-agent-jar-with-dependencies.jar && \
+    curl -fLo /var/agent/atlassian-agent.jar https://github.com/haxqer/bitbucket/releases/download/v${AGENT_VERSION}/atlassian-agent-jar-with-dependencies.jar && \
     curl -fLo /tmp/atlassian.tar.gz https://product-downloads.atlassian.com/software/stash/downloads/atlassian-bitbucket-${BITBUCKET_VERSION}.tar.gz && \
     tar xzf /tmp/atlassian.tar.gz -C /opt/bitbucket/ --strip-components 1 && \
     rm -f /tmp/atlassian.tar.gz
 
 # Final stage
-FROM eclipse-temurin:17-jdk-jammy
+FROM eclipse-temurin:11-jdk-jammy
 
 LABEL maintainer="haxqer <haxqer666@gmail.com>" version="8.19.9"
 
@@ -44,7 +46,7 @@ ENV BITBUCKET_USER=bitbucket \
     BITBUCKET_INSTALL=/opt/bitbucket \
     JVM_MINIMUM_MEMORY=2g \
     JVM_MAXIMUM_MEMORY=6g \
-    JVM_CODE_CACHE_ARGS='-XX:InitialCodeCacheSize=1g -XX:ReservedCodeCacheSize=2g' \
+    JVM_CODE_CACHE_ARGS='-XX:InitialCodeCacheSize=2g -XX:ReservedCodeCacheSize=6g' \
     AGENT_PATH=/var/agent \
     AGENT_FILENAME=atlassian-agent.jar
 

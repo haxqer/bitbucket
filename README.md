@@ -2,8 +2,8 @@
 
 [README](README.md) | [中文文档](README_zh.md)
 
-+ LTR Version: v8.9.19 - MYSQL and PostgreSQL
-+ LTR Version: v8.19.9
++ LTR Version: v8.9.19 - MYySQL and PostgreSQL
++ LTR Version: v8.19.9 - PostgreSQL and MYySQL (MySQL is not supported officially by Atlassian)
 
 
 Thanks to: [voarsh2](https://github.com/voarsh2) for [Bitbucket test data](https://github.com/haxqer/jira/issues/30) 
@@ -18,11 +18,17 @@ default port: 7990
 
 ## How to run with docker-compose
 
-- start bitbucket & mysql
+- Choose between PostgreSQL or MySQL DB
+- start bitbucket:
 
 ```
     git clone https://github.com/haxqer/bitbucket.git \
         && cd bitbucket \
+```
+
+Choose with LTR/DB version you want (from root directory) or CD into other LTR versions with MySQL/PostgreSQL
+
+```
         && docker-compose pull \
         && docker-compose up
 ```
@@ -54,8 +60,6 @@ default port: 7990
 
 - config your own db:
 
-
-## Bitbucket 8.x does not allow new MYSQL installations. Use DB migratior to migrate to PostgreSQL
 
 
 ## How to hack bitbucket

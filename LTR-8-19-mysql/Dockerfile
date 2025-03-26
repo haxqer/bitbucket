@@ -1,12 +1,13 @@
-# Builds 8.9.x with with built-in Postgres support, and installs Git and Git LFS
+# Builds 8.19.x with MySQL driver, Git and Git LFS
 # Modify to your liking.
 
 # syntax=docker/dockerfile:1.4
-FROM eclipse-temurin:11-jdk-jammy AS builder
+FROM eclipse-temurin:17-jdk-jammy AS builder
 
-ARG BITBUCKET_VERSION=8.9.19
+ARG BITBUCKET_VERSION=8.19.9
 ARG BITBUCKET_PRODUCT=bitbucket-software
 ARG AGENT_VERSION=1.3.3.4
+ARG MYSQL_DRIVER_VERSION=8.0.22
 ARG GIT_VERSION=2.42.0
 
 # Install build dependencies and Git
@@ -36,9 +37,9 @@ RUN mkdir -p /opt/bitbucket /var/bitbucket /var/agent && \
     rm -f /tmp/atlassian.tar.gz
 
 # Final stage
-FROM eclipse-temurin:11-jdk-jammy
+FROM eclipse-temurin:17-jdk-jammy
 
-LABEL maintainer="haxqer <haxqer666@gmail.com>" version="8.9.19"
+LABEL maintainer="haxqer <haxqer666@gmail.com>" version="8.19.9"
 
 ENV BITBUCKET_USER=bitbucket \
     BITBUCKET_GROUP=bitbucket \
