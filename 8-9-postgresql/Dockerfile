@@ -1,3 +1,6 @@
+# Builds 8.9.x with with built-in Postgres support, and installs Git and Git LFS
+# Modify to your liking.
+
 # syntax=docker/dockerfile:1.4
 FROM eclipse-temurin:11-jdk-jammy AS builder
 
