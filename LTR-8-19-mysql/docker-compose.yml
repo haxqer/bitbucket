@@ -1,0 +1,51 @@
+version: '3.4'
+services:
+  bitbucket:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bitbucket-srv
+    environment:
+      - TZ=Asia/Shanghai
+      - JDBC_DRIVER=org.postgresql.Driver
+      - JDBC_URL=jdbc:postgresql://postgres:5432/bitbucket
+      - JDBC_USER=bitbucket
+      - JDBC_PASSWORD=bitbucket
+    depends_on:
+      - postgres
+    ports:
+      - "7990:7990"
+      - "7999:7999"
+    volumes:
+      - home_data:/var/bitbucket
+    restart: always
+    networks:
+      - network-bridge
+
+  mysql:
+    image: mysql:8
+    container_name: mysql-bitbucket
+    environment:
+      - TZ=Asia/Shanghai
+      - MYSQL_DATABASE=bitbucket
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_USER=bitbucket
+      - MYSQL_PASSWORD=123123
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_bin']
+#    ports:
+#      - "13306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: always
+    networks:
+      - network-bridge
+
+networks:
+  network-bridge:
+    driver: bridge
+
+volumes:
+  home_data:
+    external: false
+  mysql_data:
+    external: false

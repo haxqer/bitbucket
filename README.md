@@ -26,7 +26,7 @@ default port: 7990
         && cd bitbucket \
 ```
 
-Choose with LTR/DB version you want (root version) or CD into other LTR versions with MySQL/PostgreSQL
+Choose with LTR/DB version you want (from root directory) or CD into other LTR versions with MySQL/PostgreSQL
 
 ```
         && docker-compose pull \
