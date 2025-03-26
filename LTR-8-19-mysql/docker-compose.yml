@@ -7,6 +7,9 @@ services:
     container_name: bitbucket-srv
     environment:
       - TZ=Asia/Shanghai
+#      - JVM_MINIMUM_MEMORY=1g
+#      - JVM_MAXIMUM_MEMORY=12g
+#      - JVM_CODE_CACHE_ARGS='-XX:InitialCodeCacheSize=1g -XX:ReservedCodeCacheSize=8g'
     depends_on:
       - mysql
     ports:
@@ -27,7 +30,7 @@ services:
       - MYSQL_ROOT_PASSWORD=123456
       - MYSQL_USER=bitbucket
       - MYSQL_PASSWORD=123123
-    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_bin']
+    command: ['mysqld', '--character-set-server=utf8', '--collation-server=utf8_bin']
 #    ports:
 #      - "13306:3306"
     volumes:

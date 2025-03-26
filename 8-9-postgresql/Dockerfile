@@ -46,7 +46,7 @@ ENV BITBUCKET_USER=bitbucket \
     BITBUCKET_INSTALL=/opt/bitbucket \
     JVM_MINIMUM_MEMORY=2g \
     JVM_MAXIMUM_MEMORY=6g \
-    JVM_CODE_CACHE_ARGS='-XX:InitialCodeCacheSize=1g -XX:ReservedCodeCacheSize=2g' \
+    JVM_CODE_CACHE_ARGS='-XX:InitialCodeCacheSize=2g -XX:ReservedCodeCacheSize=6g' \
     AGENT_PATH=/var/agent \
     AGENT_FILENAME=atlassian-agent.jar
 
